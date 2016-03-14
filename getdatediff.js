@@ -6,5 +6,8 @@ function GetDateDiff(startTime,endTime){
     var divNum=1000;
     return parseInt((eTime.getTime()-sTime.getTime())/parseInt(divNum));
 }
-var result=GetDateDiff("2016-01-27 15:54:06","2016-01-27 15:54:59");
-console.log(result);
+
+db.atckdf.find({"secInfo.beginTs":{$type:2}}).map(function(x){
+    x.duration=GetDateDiff(x.secInfo.beginTs,x.secInfo.endTs);
+    db.atckdf.save(x);
+})

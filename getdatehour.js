@@ -3,5 +3,9 @@ function GetDateHour(inputTime){
     var iTime=new Date(inputTime);
     return parseInt(iTime.getHours());
 }
-var result=GetDateHour("2016-01-27 15:54:59");
-console.log(result);
+
+
+db.atckdf.find({"secInfo.beginTs":{$type:2}}).map(function(x){
+    x.hour=GetDateHour(x.secInfo.beginTs);
+    db.atckdf.save(x);
+})
