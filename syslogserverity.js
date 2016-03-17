@@ -3,7 +3,7 @@ var assert=require('assert');
 var ObjectId=require('mongodb').ObjectID;
 var url='mongodb://localhost:27017/dbsyslog';
 var aggregatesyslog=function(db,callback){
-    db.collection('syslog').aggregate(
+    db.collection('atckdf').aggregate(
         [
             {$group:{"_id":"$serverity","count":{$sum:1}}}
         ]
