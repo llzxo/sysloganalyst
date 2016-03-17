@@ -8,7 +8,8 @@ var aggregatesyslog=function(db,callback){
             {$unwind:"$newsource"},
             {$group:{"_id":"$newsource","count":{$sum:1}}},
             {$sort:{count:-1}},
-            {$limit:50}
+            {$limit:50},
+            {$out:"source-top-50"}
         ]
     ).toArray(function(err,result){
         assert.equal(err,null);
