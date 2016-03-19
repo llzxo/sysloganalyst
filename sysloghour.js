@@ -5,7 +5,8 @@ var url='mongodb://localhost:27017/dbsyslog';
 var aggregatesyslog=function(db,callback){
     db.collection('atckdf').aggregate(
         [
-            {$group:{"_id":"$hour","count":{$sum:1}}}
+            {$group:{"_id":"$hour","count":{$sum:1}}},
+            {$out:"attack_hour"}
         ]
     ).toArray(function(err,result){
         assert.equal(err,null);
